@@ -50,7 +50,9 @@ jobs:
           echo "检查配置文件:"
           cat _config.yml
           echo "检查主题配置:"
-          cat _config.landscape.yml || echo "主题配置文件不存在"
+          cat _config.butterfly.yml || echo "主题配置文件不存在"
+          echo "检查是否安装了必要的渲染器:"
+          npm list hexo-renderer-pug hexo-renderer-stylus || echo "渲染器未安装"
       
       - name: 清理缓存
         run: npx hexo clean || hexo clean
