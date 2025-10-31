@@ -77,8 +77,23 @@ index_generator:
 
 # Category & Tag
 default_category: uncategorized
+# 分类映射配置，建立文章分类与URL的映射关系
 category_map:
+  AI写作工具: ai-writing-tools
+  图像生成工具: image-generation-tools
+  编程辅助工具: coding-tools
+  办公效率工具: productivity-tools
+  教程: tutorial
+  资源: resource
+
+# 标签映射配置
 tag_map:
+  AI写作: ai-writing
+  免费工具: free-tools
+  写作助手: writing-assistant
+  Hexo: hexo
+  教程: tutorial
+  资源: resource
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta

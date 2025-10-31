@@ -32,6 +32,20 @@ description: 精选各类教程内容，帮助您快速学习和成长
     <span class="post-meta">{{ post.date.format('YYYY-MM-DD') }}</span>
   </li>
 {% endfor %}
+
+{% if site.categories["AI写作工具"] %}
+<h3>AI写作工具教程</h3>
+<ul class="post-list">
+{% for post in site.categories["AI写作工具"] %}
+  <li>
+    <a href="{{ post.url }}">
+      {{ post.title }}
+    </a>
+    <span class="post-meta">{{ post.date.format('YYYY-MM-DD') }}</span>
+  </li>
+{% endfor %}
+</ul>
+{% endif %}
 </ul>
 
 如果您有任何建议或想学习的主题，请随时联系我们！

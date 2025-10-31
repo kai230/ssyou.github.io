@@ -1,7 +1,7 @@
 ---
 title: 如何使用Hexo更新博客文章
 date: 2025-10-31 09:51:45
-categories: 教程
+categories: [教程]
 tags: [Hexo, 博客, 教程, 使用指南]
 description: 详细介绍如何使用Hexo框架创建、编辑和发布博客文章的完整教程。
 ---

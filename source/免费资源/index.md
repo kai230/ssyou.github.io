@@ -36,6 +36,34 @@ description: 收集各类优质免费资源，助力您的学习和工作
     <span class="post-meta">{{ post.date.format('YYYY-MM-DD') }}</span>
   </li>
 {% endfor %}
+
+{% if site.categories["AI写作工具"] %}
+<h3>AI工具资源</h3>
+<ul class="post-list">
+{% for post in site.categories["AI写作工具"] %}
+  <li>
+    <a href="{{ post.url }}">
+      {{ post.title }}
+    </a>
+    <span class="post-meta">{{ post.date.format('YYYY-MM-DD') }}</span>
+  </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if site.categories["图像生成工具"] %}
+<h3>图像生成工具资源</h3>
+<ul class="post-list">
+{% for post in site.categories["图像生成工具"] %}
+  <li>
+    <a href="{{ post.url }}">
+      {{ post.title }}
+    </a>
+    <span class="post-meta">{{ post.date.format('YYYY-MM-DD') }}</span>
+  </li>
+{% endfor %}
+</ul>
+{% endif %}
 </ul>
 
 如果您知道其他优质的免费资源，欢迎推荐给我们！
