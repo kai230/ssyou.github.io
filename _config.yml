@@ -10,6 +10,8 @@ keywords: AI工具, 免费AI, AI教程, 中文AI, Stable Diffusion, 写作助手
 author: 您的名字
 language: zh-CN
 timezone: Asia/Shanghai
+# Favicon
+favicon: /favicon.svg
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'

@@ -17,10 +17,10 @@ menu:
 # 导航栏图标设置
 # 设置网站的小图标
 favicon:
-  small: /img/favicon-16x16-next.png
-  medium: /img/favicon-32x32-next.png
-  apple_touch_icon: /img/apple-touch-icon-next.png
-  safari_pinned_tab: /img/logo.svg
+  small: /favicon.svg
+  medium: /favicon.svg
+  apple_touch_icon: /favicon.svg
+  safari_pinned_tab: /favicon.svg
 
 # 网站公告
 # 用于在顶部显示重要信息
