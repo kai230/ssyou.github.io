@@ -41,6 +41,8 @@ menu:
   关于: /about/
 i18n_dir: :lang
 skip_render:
+  - README.md
+  - CNAME
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -94,6 +96,16 @@ tag_map:
   Hexo: hexo
   教程: tutorial
   资源: resource
+  AI图像: ai-image
+  生成工具: generation-tools
+  入门教程: beginner-tutorial
+  博客: blog
+  主题定制: theme-customization
+  免费下载: free-download
+  生产力: productivity
+  AI应用: ai-applications
+  设计素材: design-materials
+  视觉设计: visual-design
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
@@ -131,6 +143,10 @@ plugins:
   - hexo-generator-feed
   - hexo-neat
   - hexo-autoprefixer
+  - hexo-generator-archive
+  - hexo-generator-category
+  - hexo-generator-tag
+  - hexo-generator-index
 
 # Scripts
 scripts:

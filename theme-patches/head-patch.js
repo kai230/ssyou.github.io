@@ -15,30 +15,33 @@ hexo.extend.filter.register('after_generate', function() {
       // 确保有正确的X-Content-Type-Options头部
       if (!content.includes('X-Content-Type-Options')) {
         content = content.replace(
-          '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
-          '<meta http-equiv="X-UA-Compatible" content="IE=edge">\n<meta http-equiv="X-Content-Type-Options" content="nosniff">'
+          /<meta http-equiv="X-UA-Compatible" content="IE=edge">/, 
+          '<meta http-equiv="X-UA-Compatible" content="IE=edge">\n    <meta http-equiv="X-Content-Type-Options" content="nosniff">'
         );
       }
       
       // 确保有正确的Cache-Control头部
       if (!content.includes('Cache-Control')) {
         content = content.replace(
-          '<meta http-equiv="X-Content-Type-Options" content="nosniff">',
-          '<meta http-equiv="X-Content-Type-Options" content="nosniff">\n<meta http-equiv="Cache-Control" content="max-age=3600, public">'
+          /<meta http-equiv="X-Content-Type-Options" content="nosniff">/, 
+          '<meta http-equiv="X-Content-Type-Options" content="nosniff">\n    <meta http-equiv="Cache-Control" content="max-age=3600, public">'
         );
       }
       
-      // 确保viewport元标签格式正确
-      if (content.includes('viewport-fit=cover') && !content.includes('viewport-fit=cover')) {
+      // 修复viewport元标签格式
+      if (content.includes('viewport') && !content.includes('viewport-fit=cover')) {
         content = content.replace(
-          'viewport-fit=cover',
-          'viewport-fit=cover'
+          /<meta name="viewport" content="[^"]*">/, 
+          '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">'
         );
       }
       
       // 确保favicon链接正确
       if (content.includes('shortcut icon') && !content.includes('/favicon.svg')) {
-        content = content.replace(/<link rel="shortcut icon" href="[^"]*">/, '<link rel="shortcut icon" href="/favicon.svg">');
+        content = content.replace(
+          /<link rel="shortcut icon" href="[^"]*">/, 
+          '<link rel="shortcut icon" href="/favicon.svg">'
+        );
       }
       
       fs.writeFileSync(htmlPath, content, 'utf8');
@@ -50,24 +53,26 @@ hexo.extend.filter.register('after_generate', function() {
   
   // 递归处理所有HTML文件
   function processDirectory(dir) {
-    const files = fs.readdirSync(dir);
-    
-    files.forEach(file => {
-      const filePath = path.join(dir, file);
-      const stat = fs.statSync(filePath);
+    try {
+      const files = fs.readdirSync(dir);
       
-      if (stat.isDirectory()) {
-        processDirectory(filePath);
-      } else if (file.endsWith('.html')) {
-        addSecurityHeaders(filePath);
-      }
-    });
-  }
-  
-  // 确保补丁目录存在
-  const patchDir = path.join(this.source_dir, 'theme-patches');
-  if (!fs.existsSync(patchDir)) {
-    fs.mkdirSync(patchDir, { recursive: true });
+      files.forEach(file => {
+        const filePath = path.join(dir, file);
+        try {
+          const stat = fs.statSync(filePath);
+          
+          if (stat.isDirectory()) {
+            processDirectory(filePath);
+          } else if (file.endsWith('.html')) {
+            addSecurityHeaders(filePath);
+          }
+        } catch (err) {
+          console.error(`处理文件失败: ${filePath}`, err);
+        }
+      });
+    } catch (err) {
+      console.error(`读取目录失败: ${dir}`, err);
+    }
   }
   
   // 开始处理

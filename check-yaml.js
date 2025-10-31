@@ -1,24 +1,39 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 
-try {
-  const content = fs.readFileSync('_config.yml', 'utf8');
-  const data = yaml.load(content);
-  console.log('YAML格式正确！');
-} catch (e) {
-  console.error('YAML解析错误:', e.message);
-  if (e.mark) {
-    console.error('错误位置: 行', e.mark.line + 1, '列', e.mark.column + 1);
-    // 显示错误行附近的内容
-    const lines = content.split('\n');
-    const errorLine = e.mark.line;
-    const startLine = Math.max(0, errorLine - 2);
-    const endLine = Math.min(lines.length - 1, errorLine + 2);
+function checkYamlFile(filePath) {
+  try {
+    const content = fs.readFileSync(filePath, 'utf8');
+    console.log(`\nChecking ${filePath}...`);
+    // 尝试解析YAML
+    const result = yaml.load(content);
+    console.log(`${filePath}: YAML is valid`);
     
-    console.error('\n错误行附近内容:');
-    for (let i = startLine; i <= endLine; i++) {
-      const prefix = i === errorLine ? '> ' : '  ';
-      console.error(`${prefix}${i + 1}: ${lines[i]}`);
+    // 检查plugins配置是否存在
+    if (result.plugins) {
+      console.log('Plugins configuration exists:', result.plugins);
+    } else {
+      console.log('No plugins configuration found');
     }
+  } catch (error) {
+    console.error(`\nERROR in ${filePath}:`);
+    console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
+    
+    // 尝试定位错误行
+    const content = fs.readFileSync(filePath, 'utf8');
+    const lines = content.split('\n');
+    // 显示可能的错误位置
+    console.log('\nLast few lines of the file:');
+    const lastLines = lines.slice(-20);
+    lastLines.forEach((line, index) => {
+      console.log(`${lines.length - 20 + index + 1}: ${line}`);
+    });
   }
 }
+
+// 检查主要配置文件
+console.log('Detailed YAML Check Started...');
+checkYamlFile('./_config.yml');
+checkYamlFile('./_config.butterfly.yml');
+console.log('\nDetailed Check Completed.');

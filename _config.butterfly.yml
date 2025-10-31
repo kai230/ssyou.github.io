@@ -94,17 +94,26 @@ sidebar:
   position: right
   offsetTop: 20
   avatar:
-    url: /img/avatar.jpg
+    url: https://cdn.jsdelivr.net/gh/kai230/ssyou.github.io@main/source/img/avatar.jpg
     rounded: true
     opacity: 1
   social:
-    enable: false
+    fab fa-github: https://github.com/kai230/ || Github
+    fab fa-twitter: https://twitter.com/ || Twitter
+    fab fa-telegram-plane: https://t.me/ || Telegram
+  menu_order:
+    - article
+    - category
+    - tag
+    - archive
+  b2t: true
+  scrollpercent: true
   menu:
     enable: true
 
 # 进度条
 reading进度条:
-  enable: true
+  enable: false
   color: 
   height: 3px
 
