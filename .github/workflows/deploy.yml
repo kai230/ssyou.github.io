@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: 检出代码
@@ -16,46 +16,67 @@ jobs:
         with:
           fetch-depth: 0  # 拉取完整历史，确保分类和标签正确生成
       
+      - name: 环境信息
+        run: |
+          echo "操作系统: $(uname -a)"
+          echo "Node.js版本: $(node -v)"
+          echo "npm版本: $(npm -v)"
+          echo "当前目录: $(pwd)"
+          echo "文件列表:"
+          ls -la
+      
       - name: 设置Node.js环境
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'  # 缓存npm依赖，加快构建速度
+          cache: 'npm'
       
-      - name: 安装依赖
-        run: npm install
+      - name: 安装依赖（详细日志）
+        run: |
+          npm install --verbose
+          echo "依赖安装完成，检查node_modules目录"
+          ls -la node_modules || echo "node_modules目录不存在"
       
       - name: 安装Hexo CLI
-        run: npm install -g hexo-cli
+        run: npm install -g hexo-cli --verbose
       
-      - name: 清理并构建网站
+      - name: 构建前检查
         run: |
-          npm list --depth=0
-          hexo --version
-          hexo clean
-          hexo generate --debug
+          echo "检查Hexo版本:"
+          npx hexo --version || hexo --version
+          echo "检查配置文件:"
+          cat _config.yml
+          echo "检查主题配置:"
+          cat _config.landscape.yml || echo "主题配置文件不存在"
       
-      - name: 查看部署配置
-        run: |
-          cat _config.yml | grep -A 10 deploy
-          echo "检查Git配置"
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git config --list
+      - name: 清理缓存
+        run: npx hexo clean || hexo clean
       
-      - name: 部署到GitHub Pages
+      - name: 构建网站（详细日志）
         run: |
-          echo "开始部署..."
           set -x
-          hexo deploy --debug || {
-            echo "部署失败，尝试直接推送到gh-pages分支"
-            cd public
-            git init
-            git config user.name "${{ github.actor }}"
-            git config user.email "${{ github.actor }}@users.noreply.github.com"
-            git add .
-            git commit -m "Deploy from GitHub Actions"
-            git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" master:gh-pages
+          # 尝试使用node_modules中的hexo
+          npx hexo generate --debug || {
+            echo "使用npx构建失败，尝试直接使用hexo命令"
+            hexo generate --debug
           }
+      
+      - name: 检查构建结果
+        if: success()
+        run: |
+          echo "构建成功，检查输出目录:"
+          ls -la public
+      
+      - name: 直接部署到gh-pages分支
+        if: success()
+        run: |
+          echo "开始部署到gh-pages分支..."
+          cd public
+          git init
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Deploy from GitHub Actions"
+          git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" master:gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
