@@ -7,6 +7,9 @@ on:
   # 允许手动触发工作流
   workflow_dispatch:
 
+permissions:
+  contents: write  # 授予写入内容的权限，允许推送到仓库
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
