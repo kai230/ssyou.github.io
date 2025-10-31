@@ -9,6 +9,13 @@
 
 
     <url>
+        <loc>https://new.ssyou.icu/categories/ai-writing-tools/</loc>
+        <lastmod>2025-10-31T06:51:24.821Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://new.ssyou.icu/categories/AI%25E5%259B%25BE%25E5%2583%258F%25E7%2594%259F%25E6%2588%2590%25E5%25B7%25A5%25E5%2585%25B7/</loc>
         <lastmod>2025-10-31T06:39:19.892Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -32,13 +39,6 @@
     <url>
         <loc>https://new.ssyou.icu/categories/image-generation-tools/</loc>
         <lastmod>2025-10-31T03:20:14.548Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://new.ssyou.icu/categories/ai-writing-tools/</loc>
-        <lastmod>2025-10-31T03:19:50.662Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
