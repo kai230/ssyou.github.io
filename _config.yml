@@ -132,6 +132,10 @@ plugins:
   - hexo-neat
   - hexo-autoprefixer
 
+# Scripts
+scripts:
+  - theme-patches/head-patch.js
+
 # SEO-friendly Sitemap Configuration
 seo_sitemap:
   path: sitemap.xml
