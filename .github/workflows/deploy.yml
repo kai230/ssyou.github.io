@@ -19,7 +19,7 @@ jobs:
       - name: 设置Node.js环境
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
           cache: 'npm'  # 缓存npm依赖，加快构建速度
       
       - name: 安装依赖
@@ -30,8 +30,10 @@ jobs:
       
       - name: 清理并构建网站
         run: |
+          npm list --depth=0
+          hexo --version
           hexo clean
-          hexo generate
+          hexo generate --debug
       
       - name: 部署到GitHub Pages
         run: hexo deploy
