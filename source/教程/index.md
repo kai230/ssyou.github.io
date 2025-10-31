@@ -29,7 +29,7 @@ description: 精选各类教程内容，帮助您快速学习和成长
     <a href="{{ post.url }}">
       {{ post.title }}
     </a>
-    <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
+    <span class="post-meta">{{ post.date.format('YYYY-MM-DD') }}</span>
   </li>
 {% endfor %}
 </ul>

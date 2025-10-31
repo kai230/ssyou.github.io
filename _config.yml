@@ -174,4 +174,4 @@ deploy:
   repo: https://${GITHUB_TOKEN}@github.com/kai230/ssyou.github.io.git
   branch: gh-pages
   # 提交信息格式
-  message: 'Site updated: {{ now(\'YYYY-MM-DD HH:mm:ss\') }}'
+  message: 'Site updated'

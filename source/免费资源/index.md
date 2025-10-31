@@ -33,7 +33,7 @@ description: 收集各类优质免费资源，助力您的学习和工作
     <a href="{{ post.url }}">
       {{ post.title }}
     </a>
-    <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
+    <span class="post-meta">{{ post.date.format('YYYY-MM-DD') }}</span>
   </li>
 {% endfor %}
 </ul>
