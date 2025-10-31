@@ -1,0 +1,43 @@
+name: Deploy Hexo Site
+
+on:
+  push:
+    branches: [ main ]  # 监听main分支的推送
+  
+  # 允许手动触发工作流
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 拉取完整历史，确保分类和标签正确生成
+      
+      - name: 设置Node.js环境
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'  # 缓存npm依赖，加快构建速度
+      
+      - name: 安装依赖
+        run: npm install
+      
+      - name: 安装Hexo CLI
+        run: npm install -g hexo-cli
+      
+      - name: 清理并构建网站
+        run: |
+          hexo clean
+          hexo generate
+      
+      - name: 部署到GitHub Pages
+        run: hexo deploy
+        env:
+          # 使用GitHub提供的token进行授权
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # 设置部署用户信息
+          GIT_USER: ${{ github.actor }}
+          GIT_EMAIL: ${{ github.actor }}@users.noreply.github.com

@@ -13,20 +13,31 @@ timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://ssyou.icu
-permalink: :year/:month/:day/:title/
+url: https://new.ssyou.icu
+permalink: :category/:title/
 permalink_defaults:
 pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+  trailing_index: false # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: false # Set to false to remove trailing '.html' from permalinks
 
 # Directory
 source_dir: source
+theme_dir: themes
 public_dir: public
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
+
+# Menu
+menu:
+  首页: /
+  教程: /教程/
+  免费资源: /免费资源/
+  关于我: /关于我/
+  归档: /archives/
+  标签: /tags/
+  分类: /categories/
 i18n_dir: :lang
 skip_render:
 
@@ -101,11 +112,66 @@ theme: landscape
 # Plugins configuration
 plugins:
   - hexo-generator-seo-friendly-sitemap
+  - hexo-generator-baidu-sitemap
+  - hexo-generator-feed
   - hexo-neat
+  - hexo-autoprefixer
+
+# SEO-friendly Sitemap Configuration
+seo_sitemap:
+  path: sitemap.xml
+  rel: false
+  tags: true
+  categories: true
+
+# Baidu Sitemap Configuration
+baidusitemap:
+  path: baidusitemap.xml
+
+# Feed Configuration
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub: 
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+
+# Hexo Neat Configuration
+neat:
+  enable: true
+  exclude:
+    - '*.min.css'
+    - '*.min.js'
+  js:
+    enable: true
+    compress: true
+  css:
+    enable: true
+    compress: true
+  html:
+    enable: true
+    compress: true
+
+# Autoprefixer Configuration
+autoprefixer:
+  exclude:
+    - '*.min.css'
+
+# Search Configuration
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/ssyou/ssyou.github.io.git
-  branch: main
+  # 使用环境变量中的GITHUB_TOKEN进行授权，避免硬编码
+  repo: https://${GITHUB_TOKEN}@github.com/kai230/ssyou.github.io.git
+  branch: gh-pages
+  # 提交信息格式
+  message: 'Site updated: {{ now(\'YYYY-MM-DD HH:mm:ss\') }}'
