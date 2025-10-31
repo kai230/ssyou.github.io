@@ -170,8 +170,8 @@ search:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  # 使用环境变量中的GITHUB_TOKEN进行授权，避免硬编码
-  repo: https://${GITHUB_TOKEN}@github.com/kai230/ssyou.github.io.git
+  # 使用GitHub Actions中正确的仓库引用方式
+  repo: https://github.com/kai230/ssyou.github.io.git
   branch: gh-pages
   # 提交信息格式
-  message: 'Site updated'
+  message: 'Site updated by GitHub Actions'
