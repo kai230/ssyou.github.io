@@ -1,0 +1,114 @@
+# 网站标题
+# 用户在浏览器标签页中看到的内容
+SEO_title:
+  - title: AI好工具
+    display_title: AI好工具
+
+# 菜单设置
+# 此处配置顶部导航菜单，将分类标签横向排列
+menu:
+  首页: / || fa fa-home
+  AI写作工具: /categories/ai-writing-tools/ || fa fa-pen-fancy
+  图像生成工具: /categories/image-generation-tools/ || fa fa-image
+  教程: /categories/tutorial/ || fa fa-book
+  资源: /categories/resource/ || fa fa-gift
+  关于: /关于我/ || fa fa-heart
+
+# 导航栏图标设置
+# 设置网站的小图标
+favicon:
+  small: /img/favicon-16x16-next.png
+  medium: /img/favicon-32x32-next.png
+  apple_touch_icon: /img/apple-touch-icon-next.png
+  safari_pinned_tab: /img/logo.svg
+
+# 网站公告
+# 用于在顶部显示重要信息
+notice:
+  enable: false
+
+# 主色调设置
+# 可以自定义网站的主色调
+theme_color:
+  enable: true
+  main: 
+  paginator: 
+  button_hover: 
+  text_selection: 
+  link_color: 
+  meta_color: 
+  hr_color: 
+
+# 卡片阴影
+card_shadow:
+  enable: true
+  z_index: 1
+
+# 代码块设置
+code:
+  copy_btn: true
+  highlight_copy: true
+  highlight_lang: true
+  highlight_shrink: false
+  highlight_height_limit: false
+  add_code_tag: true
+
+# 搜索功能
+local_search:
+  enable: true
+  preload: false
+  CDN: 
+  algolia_search:
+    enable: false
+
+# 页脚设置
+footer:
+  owner:
+    enable: true
+    since: 2025
+  custom_text:
+  copyright:
+    enable: true
+    icon: false
+
+# 文章设置
+post:
+  img_lazyload: true
+  display_edit: false
+  display_author: true
+  display_date: true
+  display_category: true
+  display_tag: true
+  display_pagination: true
+  auto_excerpt:
+    enable: true
+    length: 150
+  reward_settings:
+    enable: false
+
+# 侧边栏设置
+sidebar:
+  display: true
+  mobile_layout_effect: true
+  tablet_layout_effect: true
+  position: right
+  offsetTop: 20
+  avatar:
+    url: /img/avatar.jpg
+    rounded: true
+    opacity: 1
+  social:
+    enable: false
+  menu:
+    enable: true
+
+# 进度条
+reading进度条:
+  enable: true
+  color: 
+  height: 3px
+
+# 其他设置
+use_cdn:
+  css: false
+  js: false

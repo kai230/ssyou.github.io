@@ -32,12 +32,11 @@ code_dir: downloads/code
 # Menu
 menu:
   首页: /
-  教程: /教程/
-  免费资源: /免费资源/
-  关于我: /关于我/
-  归档: /archives/
-  标签: /tags/
-  分类: /categories/
+  AI写作工具: /categories/ai-writing-tools/
+  图像生成工具: /categories/image-generation-tools/
+  教程: /categories/tutorial/
+  资源: /categories/resource/
+  关于: /about/
 i18n_dir: :lang
 skip_render:
 
@@ -81,10 +80,9 @@ default_category: uncategorized
 category_map:
   AI写作工具: ai-writing-tools
   图像生成工具: image-generation-tools
-  编程辅助工具: coding-tools
-  办公效率工具: productivity-tools
   教程: tutorial
   资源: resource
+  默认分类: default
 
 # 标签映射配置
 tag_map:
@@ -122,7 +120,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: butterfly
 
 # Plugins configuration
 plugins:
